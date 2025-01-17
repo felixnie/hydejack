@@ -48,7 +48,8 @@
     el: '#waline',
     serverURL: '{{ waline.server }}',
     dark: document.body.classList.contains('dark-mode') ? 'html.dark-mode' : false,
-    lang: '{{ waline.locale | default: "en-US" }}'
+    lang: '{{ waline.locale | default: "en-US" }}',
+    path: window.location.pathname.replace(/\/$/,'')
   });
 
   document.addEventListener('hydejack-dark-mode-toggle', (e) => {
