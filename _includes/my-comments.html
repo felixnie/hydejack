@@ -34,5 +34,21 @@
       w.loadJSDeferred(d.getElementById("_hrefDisqus").href + 'embed.js');
     }
   }
+
+  d.addEventListener('hydejack-dark-mode-toggle', (e) => {
+    setTimeout(() => {
+      if (w.DISQUS) {
+        w.DISQUS.reset({
+          reload: true,
+          config: function () {
+            this.page.url = w.location.href;
+            this.page.title = d.title;
+            this.page.identifier = w.location.pathname;
+          }
+        });
+      }
+    }, 500);
+  });
+
 }(window, document);</script>
 {% endif %}
