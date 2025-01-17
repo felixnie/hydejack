@@ -1,5 +1,17 @@
 {% assign disqus = site.disqus | default:site.disqus_shortname %}
 {% if disqus %}
+
+<!-- Fixing the Disqus iframe transparency issue on some browsers -->
+<style>
+  :root {
+    color-scheme: light dark;
+  }
+  /* make sure Disqus iframe uses light mode */
+  iframe {
+    color-scheme: light;
+  }
+</style>
+
 <div id="disqus_thread"></div>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 <script>!function(w, d) {
