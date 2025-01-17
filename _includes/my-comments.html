@@ -1,4 +1,8 @@
-{% assign disqus = site.disqus | default:site.disqus_shortname %}
+{% assign provider = site.comments.provider | default: 'disqus' %}
+
+{% if provider == "disqus" %}
+
+{% assign disqus = site.comments.disqus %}
 {% if disqus %}
 
 <!-- Fixing the Disqus iframe transparency issue on some browsers -->
@@ -51,4 +55,40 @@
   });
 
 }(window, document);</script>
+{% endif %}
+
+{% elsif provider == "waline" %}
+
+{% assign waline = site.comments.waline %}
+{% if waline %}
+<!-- Waline CSS -->
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/@waline/client@v3/dist/waline.css"
+/>
+
+<!-- Waline div -->
+<div id="waline"></div>
+
+<!-- Waline JS -->
+<script type="module">
+  import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+
+  const waline = init({
+    el: '#waline',
+    serverURL: '{{ waline.server }}',
+    dark: document.body.classList.contains('dark-mode') ? 'html.dark-mode' : false,
+    lang: '{{ waline.locale | default: "en-US" }}',
+    path: window.location.pathname.replace(/\/$/,'')
+  });
+
+  document.addEventListener('hydejack-dark-mode-toggle', (e) => {
+    const isDarkMode = e.detail;
+    waline.update({
+      dark: isDarkMode ? 'html.dark-mode' : false,
+    });
+  });
+</script>
+{% endif %}
+
 {% endif %}
