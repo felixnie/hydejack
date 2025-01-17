@@ -22,14 +22,14 @@
         config() {
           this.page.url = w.location.href;
           this.page.title = d.title;
-          this.page.identifier = w.location.pathname;
+          this.page.identifier = w.location.pathname.replace(/\/$/,'');
         },
       });
     } else {
       w.disqus_config = function disqusConfig() {
         this.page.url = w.location.href;
         this.page.title = d.title;
-        this.page.identifier = w.location.pathname;
+        this.page.identifier = w.location.pathname.replace(/\/$/,'');
       };
       w.loadJSDeferred(d.getElementById("_hrefDisqus").href + 'embed.js');
     }
@@ -43,7 +43,7 @@
           config: function () {
             this.page.url = w.location.href;
             this.page.title = d.title;
-            this.page.identifier = w.location.pathname;
+            this.page.identifier = w.location.pathname.replace(/\/$/,'');
           }
         });
       }
