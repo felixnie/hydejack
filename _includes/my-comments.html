@@ -108,7 +108,17 @@
     serverURL: '{{ waline.server }}',
     dark: 'body.dark-mode',
     lang: '{{ waline.locale | default: "en-US" }}',
-    path: window.location.pathname.replace(/\/$/,'')
+    path: window.location.pathname.replace(/\/$/,''),
+    reaction: [
+      'https://unpkg.com/@waline/emojis@1.2.0/qq/qq_cute.gif',
+      'https://unpkg.com/@waline/emojis@1.2.0/qq/qq_tangled.gif',
+      'https://unpkg.com/@waline/emojis@1.2.0/qq/qq_confounded.gif',
+      'https://unpkg.com/@waline/emojis@1.2.0/qq/qq_pock_face.gif',
+    ],
+    emoji: [
+      '//unpkg.com/@waline/emojis@1.2.0/qq',
+      '//unpkg.com/@waline/emojis@1.2.0/tieba',
+    ],
   });
 </script>
 {% endif %}
